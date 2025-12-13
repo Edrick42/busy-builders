@@ -41,6 +41,8 @@
     --space-3: 1.5rem;  /* 24px */
     --space-4: 2rem;    /* 32px */
     --space-5: 3rem;    /* 48px */
+    --space-10: 6rem;   /* 96px */
+    --space-15: 9rem;   /* 144px */
 
     /* Tipografia fluida */
     --font-size-base: clamp(1rem, 1vw + 0.5rem, 1.125rem);
@@ -112,8 +114,8 @@ section * {
     box-sizing: border-box;
 }
 
-.container {
-    margin: 0rem auto 1rem auto;
+section {
+    padding: var(--space-1);
 }
 
 h1,
@@ -148,7 +150,7 @@ p {
     top: 0;
     left: 0;
     right: 0;
-    background: var(--joy-500);
+    background: var(--black-900);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -197,6 +199,10 @@ p {
     display: block;
 }
 
+.site-header.fixed .logo img {
+  filter: brightness(0) invert(1);
+}
+
 .main-nav {
     display: flex;
     gap: 12px;
@@ -216,12 +222,19 @@ p {
     text-align: center;
 }
 
+.site-header.fixed .main-nav a {
+    color: var(--white-000);
+}
+
 .main-nav a img {
     display: block;
     width: 24px;
     height: 24px;
-    margin-right: -16px;
     transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.site-header.fixed .main-nav a img {
+  filter: brightness(0) invert(1);
 }
 
 .main-nav a:hover img {
@@ -342,9 +355,6 @@ p {
    HERO
    ========================================================= */
 /* Hero - mobile first (single column) */
-.hero {
-    padding: 1rem 1rem;
-}
 
 .calendly-badge-widget {
     flex: 1;
@@ -374,13 +384,13 @@ p {
     letter-spacing: 0.5px;
     font-weight: 700;
     font-size: 1.2rem;
+    text-transform: uppercase;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12),
         0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 
 .btn.primary {
-    margin: 32px 0px;
     max-width: 450px;
     text-align: center;
     justify-content: center;
@@ -432,7 +442,6 @@ p {
     justify-content: center;
     background: var(--blue-700);
     color: var(--white-100);
-    margin-top: 16px;
     /* subtle interactive transition similar to primary */
     transition: transform 180ms cubic-bezier(.2, .8, .2, 1),
         box-shadow 180ms cubic-bezier(.2, .8, .2, 1),
@@ -462,7 +471,6 @@ p {
 .btn.tertiary {
     background: var(--white-100);
     color: var(--black-700);
-    margin-bottom: 3rem;
     /* subtle interactive transition similar to primary */
     transition: transform 180ms cubic-bezier(.2, .8, .2, 1),
         box-shadow 180ms cubic-bezier(.2, .8, .2, 1),
@@ -594,7 +602,6 @@ p {
 .services-bottom .btn {
     margin: auto;
     max-width: 600px;
-    margin-top: 16px;
 }
 
 .comparison-card {
@@ -606,69 +613,6 @@ p {
 .card-image {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12),
         0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.who-we-help {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-}
-
-.who-we-help-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-}
-
-.who-we-help-left h1 {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    color: var(--black-900);
-    font-weight: 700;
-    margin: 0 0 12px 0;
-    text-align: left;
-}
-
-.who-we-help-card-img {
-    position: relative;
-    width: 650px;
-    height: auto;
-    margin-top: 2rem;
-}
-
-.who-we-help-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-    margin-top: 6rem;
-}
-
-.who-we-help-content {
-    padding: 1rem 2rem 4rem 2rem;
-    margin-top: -3rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12),
-        0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.who-we-help-content h4 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    color: var(--black-900);
-    font-weight: 600;
-    margin: 0 0 12px 0;
-    text-align: left;
-}
-
-.who-we-help-content p {
-    font-family: var(--font-body);
-    color: var(--black-700);
-    font-size: 1.25rem;
-    display: block;
 }
 
 .testimonials {
@@ -777,24 +721,24 @@ p {
 .contact-us {
     padding: 1rem;
     text-align: center;
-    background-color: var(--joy-500);
+    background-color: var(--white-100);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
 
 .contact-us-card-img {
+    flex: 1;
     position: relative;
-    width: 400px;
     height: auto;
-    margin: 2rem 0rem;
 }
 
 .contact-us-content {
-    width: 100%;
+    flex: 1;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 .contact-us-content h2 {
@@ -819,9 +763,8 @@ p {
 .contact-us-content p {
     font-family: var(--font-body);
     font-size: 1.5rem;
-    color: var(--black-700);
+    color: var(--black-900);
     max-width: 600px;
-    margin: 32px auto 16px;
     width: 100%;
 }
 
@@ -836,7 +779,7 @@ p {
 .contact-form-title {
     font-family: var(--font-display);
     font-size: 2rem;
-    color: var(--black-900);
+    color: var(--white-000);
     margin-top: 0rem;
     margin-bottom: 1.5rem;
 }
@@ -868,7 +811,8 @@ p {
 
 /* Footer */
 .site-footer {
-    background: var(--white-100);
+    background-color: var(--black-900);
+    color: var(--white-000);
     padding: 40px 0px;
     border-top: 1px solid rgba(0, 0, 0, 0.03);
     width: 100%;
@@ -911,7 +855,8 @@ p {
 .footer-logo {
     width: 90vw;
     height: auto;
-    display: block
+    display: block;
+    margin-bottom: var(--space-4);
 }
 
 .footer-left p {
@@ -923,7 +868,7 @@ p {
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--black-900);
+    color: var(--white-000);
     margin: 0;
     width: 100%;
 }
@@ -949,14 +894,14 @@ p {
 }
 
 .footer-email {
-    color: var(--black-900);
+    color: var(--white-000);
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
 }
 
 .footer-copy {
-    color: var(--black-700);
+    color: var(--white-000);
     margin-top: 8px
 }
 
@@ -968,15 +913,11 @@ p {
 
     .btn {
         font-size: 2rem;
+        margin: 0;
     }
 
     .site-header {
-        padding: 2rem 0;
-    }
-
-    .container {
-        padding: 0;
-        margin: 0rem 6vw;
+        padding: var(--space-2) var(--space-5);
     }
 
     .header-inner {
@@ -997,6 +938,14 @@ p {
         transition: color 160ms ease, font-size 160ms ease, letter-spacing 160ms ease, font-weight 160ms ease;
         font-size: 14px;
     }
+    
+    .main-nav a.last {
+        margin-right: 20px;
+    }
+
+    .main-nav a.icon {
+        margin-left: 0px;
+    }
 
     .main-nav a:hover,
     .main-nav a:focus {
@@ -1010,10 +959,11 @@ p {
     }
 
     .hero {
-        height: 180vh;
+        height: 160vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: end;
+        margin-bottom: var(--space-15);
     }
 
     .display {
@@ -1041,11 +991,12 @@ p {
     .hero-cta {
         display: flex;
         flex-direction: row;
-        margin: var(--space-5);
+        margin: var(--space-5) var(--space-5) 0;
         background-color: var(--black-900);
         height: auto;
         padding: var(--space-5) var(--space-4);
         gap: var(--space-5);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
     }
 
     .hero-cta-left {
@@ -1134,10 +1085,26 @@ p {
     .services {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         width: 100%;
         height: auto;
         gap: var(--space-2);
         padding: var(--space-2) var(--space-5);
+        margin-bottom: var(--space-15);
+    }
+
+    .services-title {
+        min-width: 100%;
+    }
+
+    .services-title h2 {
+        font-family: var(--font-body);
+        font-size: var(--font-size-xxxl);
+        margin: 0;
+        margin-bottom: var(--space-5);
+        color: var(--black-900);
+        font-weight: 600;
+        text-align: left;
     }
 
     .services-card {
@@ -1148,6 +1115,7 @@ p {
         padding: var(--space-1) var(--space-4);
         display: flex;
         flex-direction: column;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
     }
 
     .services-card .image-mask-container {
@@ -1274,22 +1242,21 @@ p {
     }
 
     .contact-us {
-        padding: 4rem 10rem;
+        padding: var(--space-5) var(--space-5);
     }
 
     .contact-us-content h2 {
-        width: 70%;
+        width: 100%;
         font-size: 3.5rem;
     }
 
     .contact-us-content h1 {
-        width: 60%;
+        width: 100%;
         font-size: 3rem;
     }
 
     .contact-us-content p {
-        max-width: 650px;
-        width: 80%;
+        width: 100%;
     }
 
     .footer-inner {
@@ -1321,28 +1288,5 @@ p {
 
     .footer-email {
         font-size: 1.1rem;
-    }
-
-    /* Make tertiary CTA much larger on desktop without affecting other buttons */
-    .btn.tertiary {
-        padding: 1.25rem 2.5rem;
-        font-size: 1.75rem;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-        max-width: 620px;
-        display: inline-block;
-        margin-top: 3rem;
-    }
-
-    /* Optionally make it full-width in its container on very large screens */
-    @media (min-width:1400px) {
-        .btn.tertiary {
-            display: block;
-            width: 80%;
-            padding: 1.5rem 3rem;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
     }
 }
